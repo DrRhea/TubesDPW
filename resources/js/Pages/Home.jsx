@@ -1,20 +1,14 @@
-import '@inertiajs/react'
-import React from 'react'
+import { Head } from '@inertiajs/react';
+import React from 'react';
+import Hero from '../Home/Hero';
+import Footer from '../Components/Footer';
 
-const Home = ({products}) => {
+const Home = () => {
   return (
-    <>
-      Test
-      { products.map((product, index) => (
-        <ul key={product.id}>
-          <li>{product.name}</li>
-          <li>{product.category}</li>
-          <li>{product.description}</li>
-          <li>{product.price_per_day}</li>
-        </ul>
-      )) }
-    </>
-  )
-}
+    <div className="font-poppins text-slate-900">
+      <Hero />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
