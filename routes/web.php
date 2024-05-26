@@ -14,6 +14,21 @@ Route::get('/', function () {
         // 'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/contact', function () {
+    return Inertia::render('Contact', []);
+});
+Route::get('/product', function () {
+    return Inertia::render('Product', []);
+});
+Route::get('/package', function () {
+    return Inertia::render('Package', []);
+});
+Route::get('/about', function () {
+    return Inertia::render('About', []);
+});
+Route::get('/blog', function () {
+    return Inertia::render('Blog', []);
+});
 
 Route::resource('/', ProductController::class);
 
