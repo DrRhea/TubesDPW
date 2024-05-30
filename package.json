@@ -23,6 +23,8 @@
     "dependencies": {
         "@iconscout/react-unicons": "^2.0.2",
         "firebase": "^10.12.1",
-        "prettier": "^3.2.5"
+        "keen-slider": "^6.8.6",
+        "prettier": "^3.2.5",
+        "react-multi-carousel": "^2.8.5"
     }
 }

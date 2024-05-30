@@ -1,12 +1,12 @@
-import React from 'react';
-import Header from '../Components/Header';
-import HeroImg from '../../img/hero/hero.jpg';
+import React from 'react'
+import Header from '../Components/Header'
+import HeroImg from '../../img/hero/hero.jpg'
 
 const Hero = () => {
   return (
-    <main className="bg-gradient-to-b from-slate-200 to-white">
+    <main className="bg-gradient-to-b from-slate-200 to-white snap-always snap-center h-fit flex flex-col">
       <Header />
-      <div className="min-h-fit w-screen px-8 py-24 max-lg:py-20 max-md:py-16 max-md:px-4">
+      <div className="min-h-fit w-screen px-8 pt-24 max-lg:pt-20 max-md:pt-16 max-md:px-4 flex-1">
         <div className="w-full justify-between gap-8 min-h-fit flex max-lg:flex-col">
           <div className="flex-1 flex flex-col gap-8 max-lg:gap-4 self-center max-sm:text-center 2xl:gap-10">
             <h1 className="text-6xl max-xl:text-5xl max-md:text-4xl font-playfair leading-snug 2xl:text-7xl">
@@ -24,15 +24,20 @@ const Hero = () => {
               Book Your Camping Adventure Today
             </button>
           </div>
-          <img
-            src={HeroImg}
-            alt=""
-            className="flex-1 w-1/2 h-[700px] object-cover max-lg:w-full max-lg:max-h-[500px] max-md:max-h-[400px] max-sm:max-h-[300px] max-[360px]:max-h-[150px] object-center max-xl:h-[600px]"
-          />
+          <div className="flex-1">
+            <img
+              src={HeroImg}
+              alt=""
+              className="w-full h-[700px] object-cover max-lg:w-full max-lg:max-h-[500px] max-md:max-h-[400px] max-sm:max-h-[300px] max-[360px]:max-h-[150px] object-center max-xl:h-[600px] drop-shadow-sm"
+            />
+            <p className="font-playfair text-lg max-lg:text-xl max-md:text-lg max-sm:text-base max-sm:text-center mt-2 max-xl:text-base font-semibold sm:ml-4 max-[360px]:text-sm">
+              Book Your Camping Adventure Today, Explore the Beauty of Nature
+            </p>
+          </div>
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

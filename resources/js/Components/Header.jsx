@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, Head, usePage } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react'
+import { Link, Head, usePage } from '@inertiajs/react'
 import {
   UilBars,
   UilEstate,
@@ -8,32 +8,50 @@ import {
   UilPhone,
   UilNewspaper,
   UilUsersAlt,
-} from '@iconscout/react-unicons';
-import SignIn from '../Components/SignIn';
+} from '@iconscout/react-unicons'
+import SignIn from '../Components/SignIn'
 
 const Header = () => {
-  const { url } = usePage(); // Get the current URL
-  const [menu, setMenu] = useState(false);
-  const [login, setLogin] = useState(false);
+  const { url } = usePage() // Get the current URL
+  const [menu, setMenu] = useState(false)
+  const [login, setLogin] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const toggleMenu = () => {
-    setMenu(!menu);
-  };
+    setMenu(!menu)
+  }
 
   const toggleLogin = () => {
-    setLogin(!login);
-  };
+    setLogin(!login)
+  }
 
   const closeLogin = () => {
-    setLogin(false);
-  };
+    setLogin(false)
+  }
 
-  const isActiveLink = (href) => url === href;
+  const isActiveLink = (href) => url === href
+
+  const handleScroll = () => {
+    if (window.scrollY > 80) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div>
       <Head></Head>
-      <nav className="flex py-4 px-4 lg:justify-between absolute lg:items-center w-screen md:py-6 md:px-8">
+      <nav
+        className={`flex fixed py-4 px-4 z-40 lg:justify-between ${scrolled && 'bg-white shadow-sm'} backdrop-blur-sm lg:items-center w-screen md:py-6 md:px-8 duration-300`}
+      >
         <span className="text-xl lg:text-lg font-semibold tracking-[.5rem] flex-1 font-playfair">
           rhent
         </span>
@@ -42,8 +60,10 @@ const Header = () => {
           <li>
             <Link
               href="/"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               Home
@@ -52,8 +72,10 @@ const Header = () => {
           <li>
             <Link
               href="/product"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/product') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/product')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               Product
@@ -62,8 +84,10 @@ const Header = () => {
           <li>
             <Link
               href="/package"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/package') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/package')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               Camping Package
@@ -72,8 +96,10 @@ const Header = () => {
           <li>
             <Link
               href="/blog"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/blog') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/blog')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               Blog
@@ -82,8 +108,10 @@ const Header = () => {
           <li>
             <Link
               href="/about"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/about') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/about')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               About Us
@@ -92,8 +120,10 @@ const Header = () => {
           <li>
             <Link
               href="/contact"
-              className={`hover:text-slate-700 duration-300 ${
-                isActiveLink('/contact') ? 'underline underline-offset-4' : ''
+              className={`hover:text-slate-500 duration-300 ${
+                isActiveLink('/contact')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               Contact
@@ -103,7 +133,7 @@ const Header = () => {
 
         {/* NAVBAR MOBILE */}
         <ul
-          className={`tracking-widest duration-300 fixed p-8 gap-4 top-16 flex flex-col lg:gap-8 items-center bg-slate-50 drop-shadow-sm lg:hidden ${
+          className={`tracking-widest duration-300 fixed p-8 gap-4 top-16 flex flex-col lg:gap-8 items-center bg-slate-50 drop-shadow-sm lg:hidden z-40 ${
             menu ? 'right-4 md:right-8' : '-right-40'
           }`}
         >
@@ -111,7 +141,9 @@ const Header = () => {
             <Link
               href="/"
               className={`mobile__link ${
-                isActiveLink('/') ? 'underline underline-offset-4' : ''
+                isActiveLink('/')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilEstate />
@@ -122,7 +154,9 @@ const Header = () => {
             <Link
               href="/product"
               className={`mobile__link ${
-                isActiveLink('/product') ? 'underline underline-offset-4' : ''
+                isActiveLink('/product')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilBackpack />
@@ -133,7 +167,9 @@ const Header = () => {
             <Link
               href="/package"
               className={`mobile__link ${
-                isActiveLink('/package') ? 'underline underline-offset-4' : ''
+                isActiveLink('/package')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilMountains />
@@ -144,7 +180,9 @@ const Header = () => {
             <Link
               href="/blog"
               className={`mobile__link ${
-                isActiveLink('/blog') ? 'underline underline-offset-4' : ''
+                isActiveLink('/blog')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilNewspaper />
@@ -155,7 +193,9 @@ const Header = () => {
             <Link
               href="/about"
               className={`mobile__link ${
-                isActiveLink('/about') ? 'underline underline-offset-4' : ''
+                isActiveLink('/about')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilUsersAlt />
@@ -166,7 +206,9 @@ const Header = () => {
             <Link
               href="/contact"
               className={`mobile__link ${
-                isActiveLink('/contact') ? 'underline underline-offset-4' : ''
+                isActiveLink('/contact')
+                  ? 'underline underline-offset-4'
+                  : 'text-slate-700'
               }`}
             >
               <UilPhone />
@@ -196,7 +238,7 @@ const Header = () => {
       </nav>
       {login && <SignIn onClose={closeLogin} />}
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -20,6 +20,9 @@ Route::get('/contact', function () {
 Route::get('/product', function () {
     return Inertia::render('Product', []);
 });
+Route::get('/product/tents', function () {
+    // return Inertia::render('Product', []);
+});
 Route::get('/package', function () {
     return Inertia::render('Package', []);
 });
@@ -28,6 +31,10 @@ Route::get('/about', function () {
 });
 Route::get('/blog', function () {
     return Inertia::render('Blog', []);
+});
+
+Route::fallback(function () {
+    return Inertia::render('NotFound');
 });
 
 Route::resource('/', ProductController::class);

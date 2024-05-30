@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from '@inertiajs/react';
-import { UilAt } from '@iconscout/react-unicons';
+import React, { useState } from 'react'
+import { Link } from '@inertiajs/react'
+import { UilAt } from '@iconscout/react-unicons'
 
 const SignIn = ({ onClose }) => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false)
 
   const toggleForm = () => {
-    setIsSignUp(!isSignUp);
-  };
+    setIsSignUp(!isSignUp)
+  }
 
   return (
     <div
@@ -26,38 +26,70 @@ const SignIn = ({ onClose }) => {
         </span>
         <form action="" className="flex justify-center flex-col gap-4">
           {isSignUp && (
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Full name"
-              className="border-1 border-slate-300 px-4 py-2"
-            />
+            <label
+              htmlFor="UserFullName"
+              className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
+            >
+              <input
+                type="text"
+                id="UserFullName"
+                placeholder="FullName"
+                className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              />
+
+              <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                Full Name
+              </span>
+            </label>
           )}
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Email address"
-            className="border-1 border-slate-300 px-4 py-2"
-          />
+          <label
+            htmlFor="UserEmail"
+            className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
+          >
+            <input
+              type="email"
+              id="UserEmail"
+              placeholder="Email"
+              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            />
 
-          <input
-            type="password"
-            name=""
-            id=""
-            placeholder="Password"
-            className="border-1 border-slate-300 px-4 py-2"
-          />
+            <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+              Email
+            </span>
+          </label>
 
-          {isSignUp && (
+          <label
+            htmlFor="UserPassword"
+            className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
+          >
             <input
               type="password"
-              name=""
-              id=""
-              placeholder="Confirm Password"
-              className="border-1 border-slate-300 px-4 py-2"
+              id="UserPassword"
+              placeholder="Password"
+              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
+
+            <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+              Password
+            </span>
+          </label>
+
+          {isSignUp && (
+            <label
+              htmlFor="UserConfirmPassword"
+              className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
+            >
+              <input
+                type="password"
+                id="UserConfirmPassword"
+                placeholder="ConfirmPassword"
+                className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              />
+
+              <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                Confirm Password
+              </span>
+            </label>
           )}
 
           {!isSignUp && (
@@ -104,7 +136,7 @@ const SignIn = ({ onClose }) => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn
