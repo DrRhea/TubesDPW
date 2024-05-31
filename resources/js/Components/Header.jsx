@@ -47,9 +47,9 @@ const Header = () => {
   }, [])
 
   return (
-    <div>
+    <div className="relative">
       <Head></Head>
-      <nav
+      <header
         className={`flex fixed py-4 px-4 z-40 lg:justify-between ${scrolled && 'bg-white shadow-sm'} backdrop-blur-sm lg:items-center w-screen md:py-6 md:px-8 duration-300`}
       >
         <span className="text-xl lg:text-lg font-semibold tracking-[.5rem] flex-1 font-playfair">
@@ -235,7 +235,7 @@ const Header = () => {
             <UilBars />
           </button>
         </div>
-      </nav>
+      </header>
       {login && <SignIn onClose={closeLogin} />}
     </div>
   )

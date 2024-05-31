@@ -3,6 +3,69 @@ import KeenSlider from 'keen-slider'
 import 'keen-slider/keen-slider.min.css'
 
 const Testimonials = () => {
+  const testimonials = [
+    {
+      title: 'Outstanding Service!',
+      testimonial:
+        'My experience with this service has been exceptional. The team is very responsive and professional in handling all my inquiries.',
+      name: 'Alex Turner',
+    },
+    {
+      title: 'Highly Recommended',
+      testimonial:
+        'The products I purchased here are of high quality, and the delivery was fast. I will definitely shop here again.',
+      name: 'Olivia Harris',
+    },
+    {
+      title: 'Best Prices',
+      testimonial:
+        'I have compared many places, and here I found the best prices for the same products. Amazing!',
+      name: 'Noah Clark',
+    },
+    {
+      title: 'Friendly and Fast Service',
+      testimonial:
+        'The staff is very friendly and quick in responding to my requests. I am very satisfied with the service.',
+      name: 'Sophia Lewis',
+    },
+    {
+      title: 'Very Helpful',
+      testimonial:
+        "This website provides very helpful and easy-to-understand information. It's been very useful to me.",
+      name: 'Ethan White',
+    },
+    {
+      title: 'Pleasant Shopping Experience',
+      testimonial:
+        'Shopping here is easy and enjoyable. The system is user-friendly, and there are many product choices.',
+      name: 'Mia Walker',
+    },
+    {
+      title: 'Guaranteed Product Quality',
+      testimonial:
+        'The products I received match the description and are of very good quality. I am very pleased with my purchase.',
+      name: 'Lucas Hall',
+    },
+    {
+      title: 'Fast and Efficient',
+      testimonial:
+        'The ordering and delivery process was very fast and efficient. I greatly appreciate the professionalism of the team.',
+      name: 'Emma Young',
+    },
+    {
+      title: 'Excellent Customer Service',
+      testimonial:
+        'The customer service here is very helpful and always ready to answer my questions clearly. Thank you!',
+      name: 'Benjamin King',
+    },
+    {
+      title: 'Very Satisfied with the Results',
+      testimonial:
+        'I am very satisfied with the final product I purchased. The quality is outstanding and meets my expectations.',
+      name: 'Isabella Wright',
+    },
+  ]
+
   useEffect(() => {
     const keenSlider = new KeenSlider('#keen-slider', {
       loop: true,
@@ -58,39 +121,25 @@ const Testimonials = () => {
   }, [])
 
   return (
-    <section className="bg-slate-50">
+    <section className="">
       <div className="mx-auto max-w-screen px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
           <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Don't just take our word for it...
+            <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              What Our Customers Say
             </h2>
 
             <p className="mt-4 text-slate-700">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-              veritatis illo placeat harum porro optio fugit a culpa sunt id!
+              Stay up-to-date on the latest news and articles from our industry.
             </p>
 
-            <div className="hidden lg:mt-8 lg:flex lg:gap-4">
+            <div className="hidden lg:mt-8 lg:flex lg:gap-4 justify-center">
               <button
                 aria-label="Previous slide"
                 id="keen-slider-previous-desktop"
                 className="border border-slate-600 p-3 text-slate-600 transition hover:bg-slate-950 hover:text-white"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-5 rtl:rotate-180"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
+                <i className="uil uil-angle-left-b" />
               </button>
 
               <button
@@ -98,156 +147,42 @@ const Testimonials = () => {
                 id="keen-slider-next-desktop"
                 className="border border-slate-600 p-3 text-slate-600 transition hover:bg-slate-950 hover:text-white"
               >
-                <svg
-                  className="size-5 rtl:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 5l7 7-7 7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <i className="uil uil-angle-right-b" />
               </button>
             </div>
           </div>
 
           <div className="-mx-6 lg:col-span-2 lg:mx-0">
             <div id="keen-slider" className="keen-slider">
-              <div className="keen-slider__slide">
-                <blockquote className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
-                  <div>
-                    <div className="flex gap-0.5 text-slate-500">
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="keen-slider__slide">
+                  <blockquote className="flex h-full flex-col justify-between bg-white p-6 sm:p-8 lg:p-12">
+                    <div>
+                      <div className="flex gap-0.5 text-slate-500">
+                        <i className="uil uil-star" />
+                        <i className="uil uil-star" />
+                        <i className="uil uil-star" />
+                        <i className="uil uil-star" />
+                        <i className="uil uil-star" />
+                      </div>
+
+                      <div className="mt-4">
+                        <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">
+                          {testimonial.title}
+                        </h3>
+
+                        <p className="mt-4 text-slate-600">
+                          {testimonial.testimonial}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="mt-4">
-                      <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">
-                        Hehe
-                      </h3>
-
-                      <p className="mt-4 text-slate-600">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quod dolores saepe veniam accusantium consequatur libero
-                        blanditiis atque tempora. Cumque, modi!
-                      </p>
-                    </div>
-                  </div>
-
-                  <footer className="mt-8 text-sm text-slate-500">
-                    &mdash; Maria, Actuary
-                  </footer>
-                </blockquote>
-              </div>
-              <div className="keen-slider__slide">
-                <blockquote className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
-                  <div>
-                    <div className="flex gap-0.5 text-slate-500">
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    </div>
-
-                    <div className="mt-4">
-                      <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">
-                        Hehe
-                      </h3>
-
-                      <p className="mt-4 text-slate-600">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quod dolores saepe veniam accusantium consequatur libero
-                        blanditiis atque tempora. Cumque, modi!
-                      </p>
-                    </div>
-                  </div>
-
-                  <footer className="mt-8 text-sm text-slate-500">
-                    &mdash; Maria, Actuary
-                  </footer>
-                </blockquote>
-              </div>
-
-              {/* Add more slides as needed */}
+                    <footer className="mt-8 text-sm text-slate-500">
+                      &mdash; {testimonial.name}
+                    </footer>
+                  </blockquote>
+                </div>
+              ))}
             </div>
 
             <div className="mt-8 flex justify-center gap-4 lg:hidden">
@@ -256,20 +191,7 @@ const Testimonials = () => {
                 id="keen-slider-previous"
                 className=" border border-slate-600 p-4 text-slate-600 transition hover:bg-slate-600 hover:text-white"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-5 rtl:rotate-180"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
+                <i className="uil uil-angle-left-b" />
               </button>
 
               <button
@@ -277,20 +199,7 @@ const Testimonials = () => {
                 id="keen-slider-next"
                 className="border border-slate-600 p-4 text-slate-600 transition hover:bg-slate-600 hover:text-white"
               >
-                <svg
-                  className="size-5 rtl:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 5l7 7-7 7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <i className="uil uil-angle-right-b" />
               </button>
             </div>
           </div>

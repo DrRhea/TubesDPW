@@ -64,6 +64,7 @@ const Products = () => {
                   <img
                     src={item}
                     alt=""
+                    loading="lazy"
                     className="h-[350px] brightness-75 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
                   />
                   <div className="relative bg-white pt-3">

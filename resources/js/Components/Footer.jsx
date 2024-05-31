@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from '@inertiajs/react'
+import FooterImg from '../../img/footer/footer.webp'
 
 const Footer = () => {
   return (
     <footer className="bg-white lg:grid lg:grid-cols-5">
       <div className="relative block h-32 lg:col-span-2 lg:h-full">
         <img
-          src="https://images.unsplash.com/photo-1642370324100-324b21fab3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+          src={FooterImg}
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -17,16 +18,16 @@ const Footer = () => {
           <div>
             <p>
               <span className="text-xs uppercase tracking-wide text-slate-500">
-                {' '}
-                Call us{' '}
+                Call us
               </span>
 
-              <Link
-                href="#"
+              <a
+                href="https://wa.me/6285320142550/"
                 className="block text-2xl font-medium text-slate-900 hover:opacity-75 sm:text-3xl"
+                target="_blank"
               >
                 085320142550
-              </Link>
+              </a>
             </p>
 
             <ul className="mt-8 space-y-1 text-sm text-slate-700">
@@ -266,8 +267,7 @@ const Footer = () => {
                   href="#"
                   className="text-slate-500 transition hover:opacity-75"
                 >
-                  {' '}
-                  Terms & Conditions{' '}
+                  Terms & Conditions
                 </Link>
               </li>
 
@@ -276,8 +276,7 @@ const Footer = () => {
                   href="#"
                   className="text-slate-500 transition hover:opacity-75"
                 >
-                  {' '}
-                  Privacy Policy{' '}
+                  Privacy Policy
                 </Link>
               </li>
 
@@ -286,14 +285,13 @@ const Footer = () => {
                   href="#"
                   className="text-slate-500 transition hover:opacity-75"
                 >
-                  {' '}
-                  Cookies{' '}
+                  Cookies
                 </Link>
               </li>
             </ul>
 
             <p className="mt-8 text-xs text-slate-500 sm:mt-0">
-              &copy; 2024.{' '}
+              &copy; 2024.
               <span className="font-playfair text-slate-950">r h e n t</span>.
               All rights reserved.
             </p>

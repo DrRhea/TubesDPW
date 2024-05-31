@@ -6,13 +6,12 @@ const Highlight = () => {
     <div className="">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-          Trusted by eCommerce Businesses
+          Our Product List
         </h2>
 
         <p className="mt-4 text-slate-500 sm:text-xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-          dolores laborum labore provident impedit esse recusandae facere libero
-          harum sequi.
+          Discover a wide range of products and packages tailored to your
+          specific needs.
         </p>
       </div>
       <Products />

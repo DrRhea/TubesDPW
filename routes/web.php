@@ -20,6 +20,9 @@ Route::get('/contact', function () {
 Route::get('/product', function () {
     return Inertia::render('Product', []);
 });
+Route::get('/product/1', function () {
+    return Inertia::render('ProductDetails', []);
+});
 Route::get('/product/tents', function () {
     // return Inertia::render('Product', []);
 });
@@ -31,6 +34,10 @@ Route::get('/about', function () {
 });
 Route::get('/blog', function () {
     return Inertia::render('Blog', []);
+});
+
+Route::get('/admin', function () {
+    return Inertia::render('Admin/Dashboard', []);
 });
 
 Route::fallback(function () {
