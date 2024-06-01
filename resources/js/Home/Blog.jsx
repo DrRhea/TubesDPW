@@ -1,6 +1,7 @@
 import React from 'react'
 import Img1 from '../../img/blog/blog-img-1.webp'
 import Img2 from '../../img/blog/blog-img-2.webp'
+import { Link } from '@inertiajs/react'
 
 const Blog = () => {
   const blogPosts = [
@@ -72,12 +73,12 @@ const Blog = () => {
                 </p>
               </header>
 
-              <a
-                href="#"
+              <Link
+                href="/blog"
                 className="mt-8 inline-block border border-slate-900 bg-slate-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring"
               >
                 Find out more
-              </a>
+              </Link>
             </div>
           </div>
         </div>

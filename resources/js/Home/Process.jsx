@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@inertiajs/react'
 
 const rentalSteps = {
   title: 'Renting Made Easy',
@@ -10,39 +11,45 @@ const rentalSteps = {
       title: 'Browse Our Products',
       description:
         'Explore our diverse camping gear and packages with detailed descriptions and images.',
+      icon: 'uil uil-credit-card-search',
     },
     {
       stepNumber: 2,
       title: 'Select Your Gear',
       description:
         'Choose the items, quantity, and rental duration. Add to cart.',
+      icon: 'uil uil-compass',
     },
     {
       stepNumber: 3,
       title: 'Create an Account',
       description: 'Sign in or create an account with your contact details.',
+      icon: 'uil uil-edit',
     },
     {
       stepNumber: 4,
       title: 'Proceed to Checkout',
       description:
         'Enter payment details, apply discount codes, review terms, and pay.',
+      icon: 'uil uil-shopping-cart',
     },
     {
       stepNumber: 5,
       title: 'Pick Up Your Gear',
       description:
         'Visit our location or arrange delivery. Bring ID and order confirmation.',
+      icon: 'uil uil-shopping-bag',
     },
     {
       stepNumber: 6,
       title: 'Enjoy and Return',
       description: 'Use, clean, and return the gear on time. Leave a review.',
+      icon: 'uil uil-grin-tongue-wink',
     },
   ],
   callToAction: {
     text: 'Get Started Today!',
-    url: '#',
+    url: '/product',
   },
 }
 
@@ -58,12 +65,12 @@ const Process = () => {
 
             <p className="mt-4 text-gray-600">{rentalSteps.description}</p>
 
-            <a
+            <Link
               href={rentalSteps.callToAction.url}
-              className="mt-8 inline-block bg-slate-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring focus:ring-yellow-400"
+              className="mt-8 inline-block bg-slate-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring focus:ring-slate-400"
             >
               {rentalSteps.callToAction.text}
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -72,23 +79,8 @@ const Process = () => {
                 key={step.stepNumber}
                 className="block border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
               >
-                <span className="inline-block bg-gray-50 p-3">
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                    ></path>
-                  </svg>
+                <span className="inline-block p-3">
+                  <i className={`${step.icon} text-xl`}></i>
                 </span>
 
                 <h2 className="mt-2 font-bold">{step.title}</h2>

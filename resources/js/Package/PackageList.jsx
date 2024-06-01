@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const PackageList = () => {
+  const [viewMode, setViewMode] = useState('grid') // Default ke grid
+
   return (
     <section>
       <div className="max-w-screen mt-12 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -18,7 +20,12 @@ const PackageList = () => {
 
         <div className="mt-8 flex items-center justify-between">
           <div className="flex rounded border border-gray-100">
-            <button className="inline-flex size-10 items-center justify-center border-e text-gray-600 transition hover:bg-gray-50 hover:text-gray-700">
+            <button
+              className={`sm:inline-flex hidden items-center p-2 justify-center border-e text-gray-600 transition hover:bg-gray-50 hover:text-gray-700 ${
+                viewMode === 'grid' ? 'bg-gray-100' : ''
+              }`}
+              onClick={() => setViewMode('grid')}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -35,7 +42,12 @@ const PackageList = () => {
               </svg>
             </button>
 
-            <button className="inline-flex size-10 items-center justify-center text-gray-600 transition hover:bg-gray-50 hover:text-gray-700">
+            <button
+              className={`sm:inline-flex hidden items-center p-2 justify-center text-gray-600 transition hover:bg-gray-50 hover:text-gray-700 ${
+                viewMode === 'list' ? 'bg-gray-100' : ''
+              }`}
+              onClick={() => setViewMode('list')}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -71,7 +83,13 @@ const PackageList = () => {
           </div>
         </div>
 
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul
+          className={`mt-4 grid gap-4 ${
+            viewMode === 'grid'
+              ? 'sm:grid-cols-2 lg:grid-cols-4'
+              : 'sm:grid-cols-1'
+          }`}
+        >
           <li>
             <a href="#" className="group block overflow-hidden">
               <img
