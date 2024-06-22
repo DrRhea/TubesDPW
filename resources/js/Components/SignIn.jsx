@@ -1,12 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from '@inertiajs/react'
-import { UilAt } from '@iconscout/react-unicons'
+import React, { useEffect, useState } from 'react'
+import { Link, useForm } from '@inertiajs/react'
+import InputError from './InputError'
 
 const SignIn = ({ onClose }) => {
   const [isSignUp, setIsSignUp] = useState(false)
+  const { data, setData, post, processing, errors, reset } = useForm({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    remember: false,
+  })
+
+  useEffect(() => {
+    return () => {
+      reset('password', 'password_confirmation')
+    }
+  }, [])
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp)
+  }
+
+  const submit = (e) => {
+    e.preventDefault()
+    if (isSignUp) {
+      post(route('register'), {
+        onSuccess: () => onClose(),
+        onError: () => console.log(errors),
+      })
+    } else {
+      post(route('login'), {
+        onSuccess: () => onClose(),
+        onError: () => console.log(errors),
+      })
+    }
   }
 
   return (
@@ -24,18 +52,25 @@ const SignIn = ({ onClose }) => {
         <span className="self-center text-base sm:text-lg font-medium mb-2">
           {isSignUp ? 'Create a new account' : 'Sign in to your account'}
         </span>
-        <form action="" className="flex justify-center flex-col gap-4">
+        <form className="flex justify-center flex-col gap-4" onSubmit={submit}>
           {isSignUp && (
             <label
-              htmlFor="UserFullName"
+              htmlFor="name"
               className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
             >
               <input
                 type="text"
-                id="UserFullName"
-                placeholder="FullName"
+                id="name"
+                name="name"
+                value={data.name}
+                isFocused={true}
+                placeholder=""
                 className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                onChange={(e) => setData('name', e.target.value)}
+                required
               />
+
+              <InputError message={errors.name} className="mt-2" />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                 Full Name
@@ -43,14 +78,18 @@ const SignIn = ({ onClose }) => {
             </label>
           )}
           <label
-            htmlFor="UserEmail"
+            htmlFor="email"
             className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
           >
             <input
               type="email"
-              id="UserEmail"
-              placeholder="Email"
+              id="email"
+              name="email"
+              value={data.email}
+              placeholder=""
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              onChange={(e) => setData('email', e.target.value)}
+              required
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -59,14 +98,18 @@ const SignIn = ({ onClose }) => {
           </label>
 
           <label
-            htmlFor="UserPassword"
+            htmlFor="password"
             className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
           >
             <input
               type="password"
-              id="UserPassword"
-              placeholder="Password"
+              id="password"
+              name="password"
+              value={data.password}
+              placeholder=""
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              onChange={(e) => setData('password', e.target.value)}
+              required
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -76,14 +119,20 @@ const SignIn = ({ onClose }) => {
 
           {isSignUp && (
             <label
-              htmlFor="UserConfirmPassword"
+              htmlFor="password_confirmation"
               className="relative block overflow-hidden border-b border-slate-200 bg-transparent pt-3 focus-within:border-blue-600"
             >
               <input
                 type="password"
-                id="UserConfirmPassword"
-                placeholder="ConfirmPassword"
+                id="password_confirmation"
+                name="password_confirmation"
+                value={data.password_confirmation}
+                placeholder=""
                 className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                onChange={(e) =>
+                  setData('password_confirmation', e.target.value)
+                }
+                required
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-slate-700 font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -100,6 +149,8 @@ const SignIn = ({ onClose }) => {
                   name="remember"
                   id="remember"
                   className="cursor-pointer"
+                  checked={data.remember}
+                  onChange={(e) => setData('remember', e.target.checked)}
                 />
                 <label
                   htmlFor="remember"
@@ -116,6 +167,7 @@ const SignIn = ({ onClose }) => {
           <button
             type="submit"
             className="text-slate-50 bg-slate-950 hover:bg-slate-800 duration-300 py-2"
+            disabled={processing}
           >
             {isSignUp ? 'Sign up' : 'Sign in'}
           </button>

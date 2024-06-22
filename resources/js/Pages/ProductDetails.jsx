@@ -1,257 +1,270 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './../Components/Header'
+import { Inertia } from '@inertiajs/inertia'
+import { Link } from '@inertiajs/react'
+import Reviews from './ProductDetails/Reviews'
+import '../../css/hideArrow.css'
+import { UilMinusSquareFull } from '@iconscout/react-unicons'
 
-const ProductDetails = (props) => {
+const ProductDetails = ({ equipment, categories, user, cart }) => {
+  const [quantity, setQuantity] = useState(1)
+
+  const [user_id, setUserId] = useState(user.id)
+  const [equipment_id, setEquipmentId] = useState(equipment.id)
+  const [duration, setDuration] = useState('')
+  const [total_price, setTotalPrice] = useState(
+    duration * equipment.rental_price_per_day,
+  )
+  const [notes, setNotes] = useState('')
+  const [status, setStatus] = useState('active')
+
+  const [pay, setPay] = useState('false')
+
+  const payToggle = (e) => {
+    e.preventDefault()
+    setPay(!pay)
+  }
+
+  const quantityAdd = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1)
+  }
+
+  const quantitySubtract = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1))
+  }
+
+  //function "storePost"
+  const transaction = async (e) => {
+    e.preventDefault()
+
+    Inertia.post(
+      '/product/instant-checkout',
+      {
+        user_id: user_id,
+        equipment_id: equipment_id,
+        duration: duration,
+        total_price: total_price,
+        notes: notes,
+        status: status,
+      },
+      {
+        onSuccess: () => {
+          alert('Transaction success.')
+        },
+        onError: (errors) => {
+          alert('Error')
+          console.error(errors)
+        },
+      },
+    )
+  }
+
+  const addToCart = () => {
+    Inertia.post(
+      '/cart/add',
+      {
+        equipment_id: equipment.id,
+        quantity: quantity,
+      },
+      {
+        onSuccess: () => {
+          alert('Item added to cart successfully')
+        },
+        onError: (errors) => {
+          alert('Error adding to cart')
+          console.error(errors)
+        },
+      },
+    )
+  }
+
+  const addToRent = () => {
+    Inertia.post(
+      '/cart/rent',
+      {
+        equipment_id: equipment.id,
+        quantity: quantity,
+      },
+      {
+        onSuccess: () => {
+          alert('Item added to cart successfully')
+        },
+        onError: (errors) => {
+          alert('Error adding to cart')
+          console.error(errors)
+        },
+      },
+    )
+  }
+
   return (
-    <div className="font-poppins">
-      <section>
-        <Header />
-      </section>
-      <div className="font-poppins py-24 px-12">
-        <div className="p-6 w-full mx-auto">
-          <div className="grid items-start grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="w-full lg:sticky sm:justify-center top-0 sm:flex gap-2">
-              <img
-                src={'../../img/products/' + props.product.image_url}
-                alt={props.product.name}
-                className="lg:w-4/5 w-full h-[300px] sm:h-[500px] lg:h-[700px]  object-cover "
-              />
-            </div>
-            <div>
-              <h2 className="text-2xl font-extrabold text-slate-800">
-                {props.product.name}
-              </h2>
-              <div className="flex flex-wrap gap-4 mt-4">
-                <p className="text-slate-800 text-xl font-bold">
-                  Rp{props.product.price_per_day * 1}
-                </p>
-                <p className="text-slate-400 text-xl">
-                  <strike>Rp{props.product.price_per_day * 1.2}</strike>
-                  <span className="text-sm ml-1">Tax included</span>
-                </p>
+    <div className="font-poppins text-slate-950">
+      <Header />
+      <div className="">
+        <div className="font-poppins py-24 px-12">
+          <div className="p-6 w-full mx-auto">
+            <div className="grid items-start grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="w-full lg:sticky sm:justify-center top-0 sm:flex gap-2">
+                <img
+                  src={'../../img/products/' + equipment.image}
+                  alt={equipment.name}
+                  className="lg:w-4/5 w-full h-[300px] sm:h-[500px] lg:h-[700px]  object-cover "
+                />
               </div>
-
-              <div className="flex space-x-2 mt-4">
-                <svg
-                  className="w-5 fill-slate-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  className="w-5 fill-slate-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  className="w-5 fill-slate-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  className="w-5 fill-slate-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  className="w-5 fill-[#CED5D8]"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-              </div>
-
-              <div className="mt-8">
-                <h3 className="text-lg font-bold text-slate-800">Sizes</h3>
+              <div>
+                <h2 className="text-2xl font-extrabold text-slate-800">
+                  {equipment.name}
+                </h2>
                 <div className="flex flex-wrap gap-4 mt-4">
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-slate-800 font-semibold text-sm  flex items-center justify-center shrink-0"
-                  >
-                    SM
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-slate-800 border-slate-800 font-semibold text-sm  flex items-center justify-center shrink-0"
-                  >
-                    MD
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-slate-800 font-semibold text-sm  flex items-center justify-center shrink-0"
-                  >
-                    LG
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-slate-800 font-semibold text-sm  flex items-center justify-center shrink-0"
-                  >
-                    XL
-                  </button>
+                  <p className="text-slate-800 text-xl font-bold">
+                    Rp{equipment.rental_price_per_day * 1}
+                  </p>
+                  <p className="text-slate-400 text-xl">
+                    <strike>Rp{equipment.rental_price_per_day * 1.2}</strike>
+                    <span className="text-sm ml-1">Tax included</span>
+                  </p>
                 </div>
-                <div className="mt-4">
+                <div className="mt-8">
                   <h3 className="text-lg font-bold text-slate-800">
-                    Choose a Color
+                    About the item
                   </h3>
-                  <div className="flex flex-wrap gap-4 mt-4">
-                    <button
-                      type="button"
-                      className="w-12 h-12 bg-black border-2 border-white hover:border-slate-800  shrink-0"
-                    ></button>
-                    <button
-                      type="button"
-                      className="w-12 h-12 bg-slate-400 border-2 border-white hover:border-slate-800  shrink-0"
-                    ></button>
-                    <button
-                      type="button"
-                      className="w-12 h-12 bg-orange-400 border-2 border-white hover:border-slate-800  shrink-0"
-                    ></button>
-                    <button
-                      type="button"
-                      className="w-12 h-12 bg-red-400 border-2 border-white hover:border-slate-800  shrink-0"
-                    ></button>
-                  </div>
+                  <div>{equipment.description}</div>
                 </div>
-                <button
-                  type="button"
-                  className="w-full mt-4 px-4 py-3 bg-slate-800 hover:bg-slate-900 text-white font-semibold "
-                >
-                  Add to cart
-                </button>
-              </div>
+                <div className="max-w-md mt-8 flex gap-4">
+                  <div>
+                    <label htmlFor="Quantity" className="sr-only">
+                      Quantity
+                    </label>
 
-              <div className="mt-8">
-                <h3 className="text-lg font-bold text-slate-800">
-                  About the item
-                </h3>
-                <ul className="space-y-3 list-disc mt-4 pl-4 text-sm text-slate-800">
-                  <li>
-                    A slate t-shirt is a wardrobe essential because it is so
-                    versatile.
-                  </li>
-                  <li>
-                    Available in a wide range of sizes, from extra small to
-                    extra large, and even in tall and petite sizes.
-                  </li>
-                  <li>
-                    This is easy to care for. They can usually be machine-washed
-                    and dried on low heat.
-                  </li>
-                  <li>
-                    You can add your own designs, paintings, or embroidery to
-                    make it your own.
-                  </li>
-                </ul>
-              </div>
+                    <div className="flex items-center border border-gray-200">
+                      <button
+                        type="button"
+                        className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                        onClick={quantitySubtract}
+                      >
+                        &minus;
+                      </button>
 
-              <div className="mt-8 max-w-md">
-                <h3 className="text-lg font-bold text-slate-800">
-                  Reviews(10)
-                </h3>
-                <div className="space-y-3 mt-4">
-                  <div className="flex items-center">
-                    <p className="text-sm text-slate-800 font-bold">5.0</p>
-                    <svg
-                      className="w-5 fill-slate-800 ml-1"
-                      viewBox="0 0 14 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                    </svg>
-                    <div className="bg-slate-300  w-full h-2 ml-3">
-                      <div className="w-2/3 h-full  bg-slate-800"></div>
+                      <input
+                        type="number"
+                        id="Quantity"
+                        value={quantity}
+                        className="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                      />
+
+                      <button
+                        type="button"
+                        onClick={quantityAdd}
+                        className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                      >
+                        +
+                      </button>
                     </div>
-                    <p className="text-sm text-slate-800 font-bold ml-3">66%</p>
                   </div>
-
-                  <div className="flex items-center">
-                    <p className="text-sm text-slate-800 font-bold">4.0</p>
-                    <svg
-                      className="w-5 fill-slate-800 ml-1"
-                      viewBox="0 0 14 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                    </svg>
-                    <div className="bg-slate-300  w-full h-2 ml-3">
-                      <div className="w-1/3 h-full  bg-slate-800"></div>
-                    </div>
-                    <p className="text-sm text-slate-800 font-bold ml-3">33%</p>
-                  </div>
-
-                  <div className="flex items-center">
-                    <p className="text-sm text-slate-800 font-bold">3.0</p>
-                    <svg
-                      className="w-5 fill-slate-800 ml-1"
-                      viewBox="0 0 14 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                    </svg>
-                    <div className="bg-slate-300  w-full h-2 ml-3">
-                      <div className="w-1/6 h-full  bg-slate-800"></div>
-                    </div>
-                    <p className="text-sm text-slate-800 font-bold ml-3">16%</p>
-                  </div>
-
-                  <div className="flex items-center">
-                    <p className="text-sm text-slate-800 font-bold">2.0</p>
-                    <svg
-                      className="w-5 fill-slate-800 ml-1"
-                      viewBox="0 0 14 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                    </svg>
-                    <div className="bg-slate-300  w-full h-2 ml-3">
-                      <div className="w-1/12 h-full  bg-slate-800"></div>
-                    </div>
-                    <p className="text-sm text-slate-800 font-bold ml-3">8%</p>
-                  </div>
-
-                  <div className="flex items-center">
-                    <p className="text-sm text-slate-800 font-bold">1.0</p>
-                    <svg
-                      className="w-5 fill-slate-800 ml-1"
-                      viewBox="0 0 14 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                    </svg>
-                    <div className="bg-slate-300  w-full h-2 ml-3">
-                      <div className="w-[6%] h-full  bg-slate-800"></div>
-                    </div>
-                    <p className="text-sm text-slate-800 font-bold ml-3">6%</p>
-                  </div>
+                  <button
+                    className="border-slate-950 uppercase px-4"
+                    onClick={addToCart}
+                  >
+                    <i className="uil uil-shopping-cart text-xl text-slate-950 hover:text-slate-500 duration-300"></i>
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  className="w-full mt-8 px-4 py-2 bg-transparent border-2 border-slate-800 text-slate-800 font-bold "
-                >
-                  Read all reviews
-                </button>
+                <div className="flex flex-col gap-4 max-w-md my-8">
+                  <Link
+                    // onClick={addToRent}
+                    onClick={payToggle}
+                    className="bg-slate-950 text-slate-50 py-4 text-center uppercase duration-300 hover:bg-slate-800"
+                  >
+                    rent
+                  </Link>
+                  <Link
+                    href="/product/rental"
+                    className="border-slate-950 text-center border py-4 uppercase hover:bg-slate-100 duration-300"
+                  >
+                    buy now
+                  </Link>
+                </div>
+                <hr />
+                <Reviews />
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div
+        className={`absolute z-50 duration-700 ${pay ? 'top-[-100%] inset-x-0' : 'inset-0'}`}
+      >
+        <form
+          onSubmit={transaction}
+          className="flex justify-center items-center h-screen"
+        >
+          <div className="mb-0 mt-6 space-y-4 bg-white p-4 shadow-lg sm:p-6 lg:p-8">
+            <button
+              onClick={payToggle}
+              className="text-right w-full flex justify-end"
+            >
+              <UilMinusSquareFull />
+            </button>
+            <p className="text-center text-lg font-medium">Create a Rental</p>
+
+            <div>
+              <label htmlFor="duration" className="sr-only">
+                Duration (days)
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  id="duration"
+                  name="duration"
+                  className="w-full border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter Duration (days)"
+                  value={duration}
+                  onChange={(e) => {
+                    setDuration(e.target.value)
+                    setTotalPrice(
+                      e.target.value * equipment.rental_price_per_day,
+                    )
+                  }}
+                  min="1"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="notes" className="sr-only">
+                Notes
+              </label>
+              <div className="relative">
+                <textarea
+                  id="notes"
+                  name="notes"
+                  className="w-full border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter Notes (optional)"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                ></textarea>
+              </div>
+            </div>
+
+            {duration && (
+              <>
+                <p className="text-center">
+                  Rp
+                  {(equipment.rental_price_per_day * duration).toLocaleString(
+                    'id-ID',
+                    { minimumFractionDigits: 0 },
+                  )}
+                </p>
+                <button
+                  type="submit"
+                  className="block w-full bg-black px-5 py-3 text-sm font-medium text-white"
+                >
+                  Create Rental
+                </button>
+              </>
+            )}
+          </div>
+        </form>
       </div>
     </div>
   )

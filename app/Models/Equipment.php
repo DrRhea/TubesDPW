@@ -17,5 +17,6 @@ class Equipment extends Model
         'avaibility_status',
         'category_id',
         'brand',
+        'image',
     ];
 }

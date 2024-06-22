@@ -11,6 +11,7 @@ const CreateEquipmentForm = () => {
     availability_status: '',
     category_id: '',
     brand: '',
+    image: '',
   })
 
   // Handle perubahan nilai input

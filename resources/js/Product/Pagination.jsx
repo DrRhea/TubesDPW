@@ -2,16 +2,16 @@ import React from 'react'
 
 const Pagination = () => {
   return (
-    <ol class="mt-8 flex justify-center gap-1 text-xs font-medium">
+    <ol className="flex justify-center gap-1 text-xs font-medium">
       <li>
         <a
           href="#"
-          class="inline-flex size-8 items-center justify-center rounded border border-gray-100"
+          className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
         >
-          <span class="sr-only">Prev Page</span>
+          <span className="sr-only">Prev Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-3 w-3"
+            className="h-3 w-3"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -27,20 +27,20 @@ const Pagination = () => {
       <li>
         <a
           href="#"
-          class="block size-8 rounded border border-gray-100 text-center leading-8"
+          className="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
         >
           1
         </a>
       </li>
 
-      <li class="block size-8 rounded border-black bg-black text-center leading-8 text-white">
+      <li className="block size-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white">
         2
       </li>
 
       <li>
         <a
           href="#"
-          class="block size-8 rounded border border-gray-100 text-center leading-8"
+          className="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
         >
           3
         </a>
@@ -49,7 +49,7 @@ const Pagination = () => {
       <li>
         <a
           href="#"
-          class="block size-8 rounded border border-gray-100 text-center leading-8"
+          className="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
         >
           4
         </a>
@@ -58,12 +58,12 @@ const Pagination = () => {
       <li>
         <a
           href="#"
-          class="inline-flex size-8 items-center justify-center rounded border border-gray-100"
+          className="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
         >
-          <span class="sr-only">Next Page</span>
+          <span className="sr-only">Next Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-3 w-3"
+            className="h-3 w-3"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

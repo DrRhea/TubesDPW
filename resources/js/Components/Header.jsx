@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Head, usePage } from '@inertiajs/react'
+import { Link, Head, usePage, useForm } from '@inertiajs/react'
+import { Inertia } from '@inertiajs/inertia'
 import {
   UilBars,
   UilEstate,
@@ -8,10 +9,18 @@ import {
   UilPhone,
   UilNewspaper,
   UilUsersAlt,
+  UilHeartAlt,
+  UilShoppingCart,
+  UilSignout,
+  UilBox,
 } from '@iconscout/react-unicons'
 import SignIn from '../Components/SignIn'
 
 const Header = () => {
+  const { props } = usePage()
+  const { auth, equipment, equipment_categories } = props
+  const user = auth.user
+
   const { url } = usePage() // Get the current URL
   const [menu, setMenu] = useState(false)
   const [login, setLogin] = useState(false)
@@ -45,6 +54,10 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  const handleLogout = () => {
+    Inertia.post(route('logout'))
+  }
 
   return (
     <div className="relative">
@@ -225,12 +238,29 @@ const Header = () => {
           </li>
         </ul>
         <div className="flex-1 flex justify-end tracking-widest">
-          <button
-            className="hidden hover:bg-slate-950 duration-300 hover:text-slate-100 lg:block lg:border-2 lg:border-slate-900 lg:px-6 lg:py-2"
-            onClick={toggleLogin}
-          >
-            Sign In
-          </button>
+          {!user ? (
+            <button
+              className="hidden hover:bg-slate-950 duration-300 hover:text-slate-100 lg:block lg:border-2 lg:border-slate-900 lg:px-6 lg:py-2"
+              onClick={toggleLogin}
+            >
+              Sign In
+            </button>
+          ) : (
+            <div className="flex items-center gap-4">
+              <Link href="/return">
+                <UilBox />
+              </Link>
+              <Link href="">
+                <UilHeartAlt />
+              </Link>
+              <Link href="">
+                <UilShoppingCart />
+              </Link>
+              <button onClick={handleLogout}>
+                <UilSignout />
+              </button>
+            </div>
+          )}
           <button className="lg:hidden" onClick={toggleMenu}>
             <UilBars />
           </button>

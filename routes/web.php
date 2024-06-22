@@ -1,45 +1,53 @@
 <?php
 
-use App\Http\Controllers\AdminProductController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\FAQController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\RentalController;
+use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EquipmentController;
-use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return Inertia::render('Home', []);
-});
+})->name('home');
 
-Route::get('/product', [EquipmentController::class, 'index']);
-Route::get('/product/{category}/{id}', [EquipmentController::class, 'show']);
+Route::get('/product', [EquipmentController::class, 'index'])->name('product');
+Route::get('/product/details/{id}', [EquipmentController::class, 'show'])
+    ->middleware(['auth', 'verified']);
+Route::post('/product/instant-checkout', [RentalController::class, 'rental'])
+    ->middleware(['auth', 'verified']);
+Route::post('/cart/add', [CartController::class, 'addToCart'])->middleware(['auth', 'verified']);
+Route::post('/cart/rent', [CartController::class, 'addToRent'])->middleware(['auth', 'verified']);
+
+Route::get('/return', [ReturnController::class, 'index'])->middleware(['auth', 'verified'])->name('return');
+Route::post('/product/instant-return', [RentalController::class, 'balikin'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('/cart', function () {
+    return Inertia::render('CartPage', []);
+});
+Route::get('product/rental', [CartController::class, 'index'])->middleware(['auth', 'verified'])->name('checkout');
+
+Route::get('/blog', function () {
+    return Inertia::render('Blog', []);
+});
 
 Route::get('/about', function () {
     return Inertia::render('About', []);
 });
-Route::get('/blog', function () {
-    return Inertia::render('Blog', []);
-});
 Route::get('/contact', function () {
     return Inertia::render('Contact', []);
 });
-
-Route::get('/dashboard/product', [AdminProductController::class, 'index']);
-Route::get('/dashboard/product/create', function () {
-    return Inertia::render('Admin/CreateEquipmentForm', [AdminProductController::class, 'create']);
-});
-Route::post('/equipment/store', [AdminProductController::class, 'store']);
-
+Route::get('/contact', [FAQController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Admin/Dashboard', []);
-})->middleware('auth'); 
-// Route::get('/dashboard/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/dashboard/login', [LoginController::class, 'login']);
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+})->middleware(['auth', 'verified']);
+Route::get('/dashboard/product', [EquipmentController::class, 'admin_product'])->middleware(['auth', 'verified']);
 
+// Route::fallback()
 
-Route::fallback(function () {
-    return Inertia::render('NotFound');
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

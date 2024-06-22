@@ -42,6 +42,7 @@ class AdminProductController extends Controller
             'availability_status' => 'required',
             'category_id' => 'required',
             'brand' => 'required',
+            'image' => 'required',
         ]);
 
         //create post
@@ -52,7 +53,8 @@ class AdminProductController extends Controller
             'purchase_price' => $request->purchase_price,
             'availability_status' => $request->availability_status,
             'category_id' => $request->category_id,
-            'brand' => $request->brand
+            'brand' => $request->brand,
+            'image' => $request->image
         ]);
 
         //redirect

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Inertia\Inertia;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use App\Models\EquipmentCategory;
 
 class EquipmentController extends Controller
 {
@@ -13,7 +15,13 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Product', []);
+        $products = Equipment::all();
+        $categories = EquipmentCategory::all();
+
+        return Inertia::render('Product', [
+            'equipment' => $products,
+            'equipment_categories' => $categories
+        ]);
     }
 
     /**
@@ -35,9 +43,17 @@ class EquipmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Equipment $equipment)
+    public function show($id)
     {
-        //
+        $equipment = Equipment::findOrFail($id);
+        $categories = EquipmentCategory::findOrFail($equipment->category_id);
+        $user = auth()->user();
+
+        return Inertia::render('ProductDetails', [
+            'equipment' => $equipment,
+            'categories' => $categories,
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -62,5 +78,17 @@ class EquipmentController extends Controller
     public function destroy(Equipment $equipment)
     {
         //
+    }
+
+    public function admin_product() {
+        
+        $products = Equipment::all();
+        $categories = EquipmentCategory::all();
+
+        return Inertia::render('Admin/Dashboard', [
+            'url' => 'products',
+            'equipment' => $products,
+            'equipment_categories' => $categories
+        ]);
     }
 }

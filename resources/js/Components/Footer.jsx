@@ -248,7 +248,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="#"
+                    href="contact#faq"
                     className="text-slate-700 transition hover:opacity-75"
                   >
                     FAQs
